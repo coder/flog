@@ -2,9 +2,9 @@
 
 `flog` is a minimal, formatted, pretty logging package for Go.
 
-It's primarily for command line tools, and it's optimized for human readability.
+It's optimized for human readability.
 
-[Uber's Zap](https://github.com/uber-go/zap) is recommended for most robust logging.
+[Uber's Zap](https://github.com/uber-go/zap) is recommended for more robust logging.
 
 ## Install
 
