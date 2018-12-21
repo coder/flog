@@ -1,5 +1,5 @@
-// Package flog provides pretty, formatted logging. It is optimized for human readability.
-// It's symbols' names may stutter—it is highly recommended to dot import the package.
+// Package flog provides human-optimized, formatted logging.
+// It's symbols' names may stutter, as it's highly recommended to dot import the package.
 package flog
 
 import (
