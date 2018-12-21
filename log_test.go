@@ -5,10 +5,6 @@ import (
 	"testing"
 )
 
-func New() {
-
-}
-
 func TestLogger(t *testing.T) {
 	Log(INFO, "hello %.3f", 1/3.0)
 	Log(SUCCESS, "finished that")
