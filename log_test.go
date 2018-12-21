@@ -1,16 +1,20 @@
 package flog_test
 
 import (
-	"go.coder.com/flog"
+	. "go.coder.com/flog"
 	"testing"
 )
 
+func New() {
+
+}
+
 func TestLogger(t *testing.T) {
-	flog.Log(flog.INFO, "hello %.3f", 1/3.0)
-	flog.Log(flog.SUCCESS, "finished that")
-	flog.Log(flog.ERROR, "oops")
+	Log(INFO, "hello %.3f", 1/3.0)
+	Log(SUCCESS, "finished that")
+	Log(ERROR, "oops")
 
-	log := flog.New().WithPrefix("user %v: ", 500)
+	log := NewLogger().WithPrefix("user %v: ", 500)
 
-	log.Log(flog.ERROR, "didn't work out")
+	log.Log(ERROR, "didn't work out")
 }
