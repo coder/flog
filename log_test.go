@@ -10,7 +10,7 @@ func TestLogger(t *testing.T) {
 	Log(SUCCESS, "finished that")
 	Log(ERROR, "oops")
 
-	log := NewLogger().WithPrefix("user %v: ", 500)
+	log := New().WithPrefix("user %v: ", 500)
 
 	log.Log(ERROR, "didn't work out")
 

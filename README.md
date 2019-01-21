@@ -15,14 +15,13 @@ It's optimized for human readability.
 ## Usage
 
 ```go
-// Use a dot import for optimal readability.
-Log(INFO, "hello %.3f", 1/3.0)
-Log(SUCCESS, "finished that")
-Log(ERROR, "oops")
+flog.Info("hello %.3f", 1/3.0)
+flog.Debug("finished that")
+flog.Error("oops")
 
-log := NewLogger().WithPrefix("user %v: ", 500)
+log := flog.NewLogger().WithPrefix("user %v: ", 500)
 
-log.Log(ERROR, "didn't work out")
+log.Error("didn't work out")
 ```
 
 produces

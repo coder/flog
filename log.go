@@ -1,5 +1,4 @@
 // Package flog provides human-optimized, formatted logging.
-// It's symbols' names may stutter, as it's highly recommended to dot import the package.
 package flog
 
 import (
@@ -57,30 +56,30 @@ func (l *Logger) Log(lvl Level, msg string, args ...interface{}) {
 	}
 }
 
-// NewLogger returns a new logger.
-func NewLogger() *Logger {
+// New returns a new logger.
+func New() *Logger {
 	return &Logger{
 		W: os.Stderr,
 	}
 }
 
 func Info(msg string, args ...interface{}) {
-	NewLogger().Log(INFO, msg, args...)
+	New().Log(INFO, msg, args...)
 }
 
 func Success(msg string, args ...interface{}) {
-	NewLogger().Log(SUCCESS, msg, args...)
+	New().Log(SUCCESS, msg, args...)
 }
 
 func Error(msg string, args ...interface{}) {
-	NewLogger().Log(ERROR, msg, args...)
+	New().Log(ERROR, msg, args...)
 }
 
 func Fatal(msg string, args ...interface{}) {
-	NewLogger().Log(FATAL, msg, args...)
+	New().Log(FATAL, msg, args...)
 }
 
 // Log logs a message with the default logger.
 func Log(l Level, m string, args ...interface{}) {
-	NewLogger().Log(l, m, args...)
+	New().Log(l, m, args...)
 }
