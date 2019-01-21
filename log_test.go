@@ -13,4 +13,10 @@ func TestLogger(t *testing.T) {
 	log := NewLogger().WithPrefix("user %v: ", 500)
 
 	log.Log(ERROR, "didn't work out")
+
+	// Short-hand
+
+	Info("something happened")
+	Error("something bad happened")
+	Success("something good happened")
 }

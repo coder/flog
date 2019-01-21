@@ -30,11 +30,27 @@ func (l *Logger) WithPrefix(p string, args ...interface{}) *Logger {
 	return &ll
 }
 
+func (l *Logger) Info(msg string, args ...interface{}) {
+	l.Log(INFO, msg, args...)
+}
+
+func (l *Logger) Success(msg string, args ...interface{}) {
+	l.Log(SUCCESS, msg, args...)
+}
+
+func (l *Logger) Error(msg string, args ...interface{}) {
+	l.Log(ERROR, msg, args...)
+}
+
+func (l *Logger) Fatal(msg string, args ...interface{}) {
+	l.Log(FATAL, msg, args...)
+}
+
 func (l *Logger) Log(lvl Level, msg string, args ...interface{}) {
 	fmt.Fprintf(
 		l.W,
 		fmt.Sprintf("%v %v\t", time.Now().Format(`2006-01-02 15:04:05`), lvl)+
-			l.Prefix + msg+"\n", args...,
+			l.Prefix+msg+"\n", args...,
 	)
 	if lvl == FATAL {
 		os.Exit(1)
@@ -46,6 +62,22 @@ func NewLogger() *Logger {
 	return &Logger{
 		W: os.Stderr,
 	}
+}
+
+func Info(msg string, args ...interface{}) {
+	NewLogger().Log(INFO, msg, args...)
+}
+
+func Success(msg string, args ...interface{}) {
+	NewLogger().Log(SUCCESS, msg, args...)
+}
+
+func Error(msg string, args ...interface{}) {
+	NewLogger().Log(ERROR, msg, args...)
+}
+
+func Fatal(msg string, args ...interface{}) {
+	NewLogger().Log(FATAL, msg, args...)
 }
 
 // Log logs a message with the default logger.
