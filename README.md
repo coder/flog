@@ -16,7 +16,7 @@ It's optimized for human readability.
 
 ```go
 flog.Info("hello %.3f", 1/3.0)
-flog.Debug("finished that")
+flog.Success("finished that")
 flog.Error("oops")
 
 log := flog.NewLogger().WithPrefix("user %v: ", 500)
