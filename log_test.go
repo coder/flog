@@ -1,8 +1,9 @@
 package flog_test
 
 import (
-	. "go.coder.com/flog"
 	"testing"
+
+	. "go.coder.com/flog"
 )
 
 func TestLogger(t *testing.T) {

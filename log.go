@@ -3,10 +3,11 @@ package flog
 
 import (
 	"fmt"
-	"github.com/fatih/color"
 	"io"
 	"os"
 	"time"
+
+	"github.com/fatih/color"
 )
 
 type Level string
@@ -48,8 +49,8 @@ func (l *Logger) Fatal(msg string, args ...interface{}) {
 func (l *Logger) Log(lvl Level, msg string, args ...interface{}) {
 	fmt.Fprintf(
 		l.W,
-		fmt.Sprintf("%v %v\t", time.Now().Format(`2006-01-02 15:04:05`), lvl)+
-			l.Prefix+msg+"\n", args...,
+		fmt.Sprintf("%v %v\t", time.Now().Format(`2006-01-02 15:04:05`), lvl)+l.Prefix+msg+"\n",
+		args...,
 	)
 	if lvl == FATAL {
 		os.Exit(1)
