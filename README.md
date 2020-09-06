@@ -19,7 +19,7 @@ flog.Info("hello %.3f", 1/3.0)
 flog.Success("finished that")
 flog.Error("oops")
 
-log := flog.NewLogger().WithPrefix("user %v: ", 500)
+log := flog.New().WithPrefix("user %v: ", 500)
 
 log.Error("didn't work out")
 ```
@@ -27,5 +27,3 @@ log.Error("didn't work out")
 produces
 
 ![example](docs/usage.png)
-
-
