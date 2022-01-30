@@ -6,11 +6,11 @@ It's optimized for human readability.
 
 [slog](https://github.com/cdr/slog) is recommended for more robust logging.
 
-[![GoDoc](https://godoc.org/github.com/golang/gddo?status.svg)](https://godoc.org/go.coder.com/flog)
+[![GoDoc](https://godoc.org/github.com/golang/gddo?status.svg)](https://godoc.org/github.com/coder/flog)
 
 ## Install
 
-`go get go.coder.com/flog`
+`go get github.com/coder/flog`
 
 ## Usage
 
