@@ -3,7 +3,7 @@ package flog_test
 import (
 	"testing"
 
-	. "go.coder.com/flog"
+	. "github.com/coder/flog"
 )
 
 func TestLogger(t *testing.T) {

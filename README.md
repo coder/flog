@@ -2,9 +2,11 @@
 
 `flog` is a minimal, formatted, pretty logging package for Go.
 
-It's optimized for human readability.
+It's optimized for human readability and CLIs.
+* Log levels color-code the timestamp
+* Log level doesn't change the width of the prefix
 
-[slog](https://github.com/cdr/slog) is recommended for more robust logging.
+[slog](https://github.com/cdr/slog) is recommended for robust logging.
 
 [![GoDoc](https://godoc.org/github.com/golang/gddo?status.svg)](https://godoc.org/github.com/coder/flog)
 
@@ -24,6 +26,6 @@ log := flog.New().WithPrefix("user %v: ", 500)
 log.Error("didn't work out")
 ```
 
-produces
+## Output
 
 ![example](docs/usage.png)

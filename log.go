@@ -10,18 +10,33 @@ import (
 	"github.com/fatih/color"
 )
 
-type Level string
+// level wraps the time string with a level, by default
+// a color.
+type level func(msg string) string
+
+func makeLevel(f func(s string, a ...interface{}) string) level {
+	return func(msg string) string {
+		return f("[%v]", msg)
+	}
+}
 
 var (
-	INFO    = Level(color.HiBlueString("INFO"))
-	SUCCESS = Level(color.HiGreenString("SUCCESS"))
-	ERROR   = Level(color.RedString("ERROR"))
-	FATAL   = Level(color.RedString("FATAL"))
+	INFO    = makeLevel(color.HiBlueString)
+	SUCCESS = makeLevel(color.HiGreenString)
+	ERROR   = makeLevel(color.RedString)
+	FATAL   = makeLevel(color.RedString)
+)
+
+// Time formats
+const (
+	ClockFormat     = "15:04:05"
+	DateClockFormat = "2006-01-02" + ClockFormat
 )
 
 type Logger struct {
-	W      io.Writer
-	Prefix string
+	W          io.Writer
+	TimeFormat string
+	Prefix     string
 }
 
 func (l *Logger) WithPrefix(p string, args ...interface{}) *Logger {
@@ -44,23 +59,22 @@ func (l *Logger) Error(msg string, args ...interface{}) {
 
 func (l *Logger) Fatal(msg string, args ...interface{}) {
 	l.Log(FATAL, msg, args...)
+	os.Exit(1)
 }
 
-func (l *Logger) Log(lvl Level, msg string, args ...interface{}) {
+func (l *Logger) Log(lvl level, msg string, args ...interface{}) {
 	fmt.Fprintf(
 		l.W,
-		fmt.Sprintf("%v %v\t", time.Now().Format(`2006-01-02 15:04:05`), lvl)+l.Prefix+msg+"\n",
+		fmt.Sprintf("%v ", lvl(time.Now().Format(l.TimeFormat)))+l.Prefix+msg+"\n",
 		args...,
 	)
-	if lvl == FATAL {
-		os.Exit(1)
-	}
 }
 
 // New returns a new logger.
 func New() *Logger {
 	return &Logger{
-		W: os.Stderr,
+		W:          os.Stderr,
+		TimeFormat: ClockFormat,
 	}
 }
 
@@ -81,6 +95,6 @@ func Fatal(msg string, args ...interface{}) {
 }
 
 // Log logs a message with the default logger.
-func Log(l Level, m string, args ...interface{}) {
+func Log(l level, m string, args ...interface{}) {
 	New().Log(l, m, args...)
 }

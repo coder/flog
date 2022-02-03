@@ -1,11 +1,8 @@
 module github.com/coder/flog
 
-go 1.18
+go 1.17
 
-require (
-	github.com/fatih/color v1.13.0
-	go.coder.com/flog v0.0.0-20200908145530-d7adc3802a47
-)
+require github.com/fatih/color v1.13.0
 
 require (
 	github.com/mattn/go-colorable v0.1.12 // indirect
