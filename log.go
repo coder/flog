@@ -21,10 +21,10 @@ func makeLevel(f func(s string, a ...interface{}) string) level {
 }
 
 var (
-	INFO    = makeLevel(color.HiBlueString)
-	SUCCESS = makeLevel(color.HiGreenString)
-	ERROR   = makeLevel(color.RedString)
-	FATAL   = makeLevel(color.RedString)
+	infoLevel    = makeLevel(color.HiBlueString)
+	successLevel = makeLevel(color.HiGreenString)
+	errorLevel   = makeLevel(color.RedString)
+	fatalLevel   = makeLevel(color.RedString)
 )
 
 // Time formats
@@ -46,23 +46,23 @@ func (l *Logger) WithPrefix(p string, args ...interface{}) *Logger {
 }
 
 func (l *Logger) Info(msg string, args ...interface{}) {
-	l.Log(INFO, msg, args...)
+	l.log(infoLevel, msg, args...)
 }
 
 func (l *Logger) Success(msg string, args ...interface{}) {
-	l.Log(SUCCESS, msg, args...)
+	l.log(successLevel, msg, args...)
 }
 
 func (l *Logger) Error(msg string, args ...interface{}) {
-	l.Log(ERROR, msg, args...)
+	l.log(errorLevel, msg, args...)
 }
 
 func (l *Logger) Fatal(msg string, args ...interface{}) {
-	l.Log(FATAL, msg, args...)
+	l.log(fatalLevel, msg, args...)
 	os.Exit(1)
 }
 
-func (l *Logger) Log(lvl level, msg string, args ...interface{}) {
+func (l *Logger) log(lvl level, msg string, args ...interface{}) {
 	fmt.Fprintf(
 		l.W,
 		fmt.Sprintf("%v ", lvl(time.Now().Format(l.TimeFormat)))+l.Prefix+msg+"\n",
@@ -79,22 +79,23 @@ func New() *Logger {
 }
 
 func Info(msg string, args ...interface{}) {
-	New().Log(INFO, msg, args...)
+	New().log(infoLevel, msg, args...)
 }
 
 func Success(msg string, args ...interface{}) {
-	New().Log(SUCCESS, msg, args...)
+	New().log(successLevel, msg, args...)
 }
 
 func Error(msg string, args ...interface{}) {
-	New().Log(ERROR, msg, args...)
+	New().log(errorLevel, msg, args...)
 }
 
 func Fatal(msg string, args ...interface{}) {
-	New().Log(FATAL, msg, args...)
+	New().log(fatalLevel, msg, args...)
+	os.Exit(1)
 }
 
-// Log logs a message with the default logger.
-func Log(l level, m string, args ...interface{}) {
-	New().Log(l, m, args...)
+// log logs a message with the default logger.
+func log(l level, m string, args ...interface{}) {
+	New().log(l, m, args...)
 }

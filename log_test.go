@@ -7,13 +7,13 @@ import (
 )
 
 func TestLogger(t *testing.T) {
-	Log(INFO, "hello %.3f", 1/3.0)
-	Log(SUCCESS, "finished that")
-	Log(ERROR, "oops")
+	log(infoLevel, "hello %.3f", 1/3.0)
+	log(successLevel, "finished that")
+	log(error, "oops")
 
 	log := New().WithPrefix("user %v: ", 500)
 
-	log.Log(ERROR, "didn't work out")
+	log.log(error, "didn't work out")
 
 	// Short-hand
 
