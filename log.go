@@ -71,31 +71,36 @@ func (l *Logger) log(lvl level, msg string, args ...interface{}) {
 }
 
 // New returns a new logger.
-func New() *Logger {
+func New(w io.Writer) *Logger {
 	return &Logger{
-		W:          os.Stderr,
+		W:          w,
 		TimeFormat: ClockFormat,
 	}
 }
 
+var defaultLogger = &Logger{
+	W:          os.Stderr,
+	TimeFormat: ClockFormat,
+}
+
 func Info(msg string, args ...interface{}) {
-	New().log(infoLevel, msg, args...)
+	defaultLogger.log(infoLevel, msg, args...)
 }
 
 func Success(msg string, args ...interface{}) {
-	New().log(successLevel, msg, args...)
+	defaultLogger.log(successLevel, msg, args...)
 }
 
 func Error(msg string, args ...interface{}) {
-	New().log(errorLevel, msg, args...)
+	defaultLogger.log(errorLevel, msg, args...)
 }
 
 func Fatal(msg string, args ...interface{}) {
-	New().log(fatalLevel, msg, args...)
+	defaultLogger.log(fatalLevel, msg, args...)
 	os.Exit(1)
 }
 
 // log logs a message with the default logger.
 func log(l level, m string, args ...interface{}) {
-	New().log(l, m, args...)
+	defaultLogger.log(l, m, args...)
 }
