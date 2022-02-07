@@ -17,13 +17,13 @@ It's optimized for human readability and CLIs.
 ## Usage
 
 ```go
-flog.Info("hello %.3f", 1/3.0)
-flog.Success("finished that")
-flog.Error("oops")
+flog.Infof("hello %.3f", 1/3.0)
+flog.Successf("finished that")
+flog.Errorf("oops")
 
-log := flog.New().WithPrefix("user %v: ", 500)
+log := flog.New(os.Stderr).WithPrefix("user %v: ", 500)
 
-log.Error("didn't work out")
+log.Errorf("didn't work out")
 ```
 
 ## Output

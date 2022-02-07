@@ -9,7 +9,7 @@ import (
 func TestLogger(t *testing.T) {
 	// Short-hand
 
-	Info("something happened")
-	Error("something bad happened")
-	Success("something good happened")
+	Infof("something happened")
+	Errorf("something bad happened")
+	Successf("something good happened")
 }

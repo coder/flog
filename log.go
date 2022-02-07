@@ -83,19 +83,19 @@ var defaultLogger = &Logger{
 	TimeFormat: ClockFormat,
 }
 
-func Info(msg string, args ...interface{}) {
+func Infof(msg string, args ...interface{}) {
 	defaultLogger.log(infoLevel, msg, args...)
 }
 
-func Success(msg string, args ...interface{}) {
+func Successf(msg string, args ...interface{}) {
 	defaultLogger.log(successLevel, msg, args...)
 }
 
-func Error(msg string, args ...interface{}) {
+func Errorf(msg string, args ...interface{}) {
 	defaultLogger.log(errorLevel, msg, args...)
 }
 
-func Fatal(msg string, args ...interface{}) {
+func Fatalf(msg string, args ...interface{}) {
 	defaultLogger.log(fatalLevel, msg, args...)
 	os.Exit(1)
 }
